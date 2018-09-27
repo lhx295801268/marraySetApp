@@ -1,0 +1,6 @@
+module Pods_ProductionCreateTest {
+  umbrella header "Pods-ProductionCreateTest-umbrella.h"
+
+  export *
+  module * { export * }
+}
