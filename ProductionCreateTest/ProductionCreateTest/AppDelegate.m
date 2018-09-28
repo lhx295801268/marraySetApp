@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "NavicationMainCtrl.h"
 #import "YCTableBarCtrl.h"
+#import "YCConclusionObj.h"
 @interface AppDelegate ()
 
 @end
@@ -23,6 +24,7 @@
     NavicationMainCtrl *nav = [[NavicationMainCtrl alloc] initWithRootViewController:ctrl];
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
+    [YCConclusionObj shareIns];
     return YES;
 }
 

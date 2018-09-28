@@ -94,7 +94,7 @@
 }
 
 - (void)initUI{
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.delegate = self;
     for (NSInteger pos = 0; pos < self.barList.count; pos++) {
         NSArray *tempList = [self.barList objectAtIndex:pos];

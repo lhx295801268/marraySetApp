@@ -12,6 +12,7 @@
 #import "YCFamilyObj.h"
 #import "YCListObj.h"
 #import "YCMainCell.h"
+#import "YCConclusionObj.h"
 #import "addFamilyCtrl/YCAddFamilyCtrlViewController.h"
 @interface YCMainCtrl()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIView *titleContentView;
@@ -80,12 +81,8 @@
         }
         [self_weak_.dataList addObject:param];
         [self_weak_.tableView reloadData];
-//        NSMutableArray *willSaveJsonList = [[NSMutableArray alloc] init];
-//        for (NSInteger index = 0; index < self.dataList.count; index++) {
-//            YCFamilyObj *obj = [self.dataList objectAtIndex:index];
-//            NSString *objStr = [obj yy_modelToJSONString];
-//            [willSaveJsonList addObject:objStr];
-//        }
+        [YCConclusionObj shareIns].inviteCount ++;
+        [YCConclusionObj shareIns].totalCount += ((YCFamilyObj *)param).membersCount;
         YCListObj *tempObj = [[YCListObj alloc] init];
         tempObj.familyObjList = self.dataList;
         NSString *saveStr = [tempObj yy_modelToJSONString];//[willSaveJsonList yy_modelToJSONString];
@@ -108,6 +105,21 @@
         self.dataList = [tempObj.familyObjList mutableCopy];
         [self.tableView reloadData];
     }
+    [YCConclusionObj shareIns].inviteCount = self.dataList.count;
+    [YCConclusionObj shareIns].totalCount = [self statisticTotalCount];
+}
+
+/**
+ 统计总人数
+
+ @return 返回总人数
+ */
+- (NSInteger)statisticTotalCount{
+    NSInteger totalCount = 0;
+    for (YCFamilyObj *obj in self.dataList) {
+        totalCount += obj.membersCount;
+    }
+    return totalCount;
 }
 #pragma mark UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

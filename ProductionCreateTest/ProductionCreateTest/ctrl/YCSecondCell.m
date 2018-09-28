@@ -8,7 +8,7 @@
 
 #import "YCSecondCell.h"
 #import "PureLayout.h"
-
+#import "YCConclusionObj.h"
 @implementation YCSecondCell
 - (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
@@ -19,12 +19,13 @@
         [self.tipsLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:15];
         [self.tipsLabel autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
         
-        self.showLabel = [UILabel newAutoLayoutView];
-        self.showLabel.textColor = [UIColor purpleColor];
-        [self.contentView addSubview:self.showLabel];
-        [self.showLabel autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.tipsLabel];
-        [self.showLabel autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.tipsLabel withOffset:10];
-        [self.showLabel autoPinEdgeToSuperviewEdge:ALEdgeRight];
+        self.showTextView = [UITextView newAutoLayoutView];
+        self.showTextView.textColor = [UIColor purpleColor];
+        [self.contentView addSubview:self.showTextView];
+        [self.showTextView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.tipsLabel];
+        [self.showTextView autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.tipsLabel withOffset:10];
+        [self.showTextView autoPinEdgeToSuperviewEdge:ALEdgeRight];
+        [self.showTextView autoSetDimension:ALDimensionHeight toSize:40];
     }
     return self;
 }
@@ -38,5 +39,57 @@
 
     // Configure the view for the selected state
 }
-
+#pragma mark UITextViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    NSString *tempStr = textView.text;
+    YCConclusionObj *obj = [YCConclusionObj shareIns];
+    switch (self.indexPath.row) {
+        case 2:
+        {
+            obj.hotelName = self.showTextView.text;
+        }
+            break;
+        case 3:
+        {
+            obj.deskCount = [tempStr integerValue];
+        }
+            break;
+        case 4:
+        {
+            obj.deskPrice = [tempStr floatValue];
+        }
+            break;
+        case 5:
+        {
+            obj.hotelPrice = obj.deskCount * obj.deskPrice;
+        }
+            break;
+        case 6:
+        {
+            obj.weddingCompanyName = tempStr;
+        }
+            break;
+        case 7:
+        {
+            obj.weddingPrice = [tempStr floatValue];
+        }
+            break;
+        case 8:
+        {
+            obj.weddingPicCompanyName = tempStr;
+        }
+            break;
+        case 9:
+        {
+            obj.weddingPicCompanyPrice = [tempStr floatValue];
+        }
+            break;
+        default:
+            break;
+    }
+    [obj saveAttr];
+    if (nil != self.refreshUIBlock) {
+        self.refreshUIBlock(obj);
+    }
+}
 @end
