@@ -13,12 +13,15 @@
 #import "YCListObj.h"
 #import "YCMainCell.h"
 #import "YCConclusionObj.h"
+#import "YCHttpRequest.h"
 #import "addFamilyCtrl/YCAddFamilyCtrlViewController.h"
 @interface YCMainCtrl()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIView *titleContentView;
 @property (nonatomic, strong) UIButton *addBtn;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
+
+@property (nonatomic, assign) NSInteger clickTimes;
 @end
 @implementation YCMainCtrl
 - (instancetype)initWithFlowName:(NSString *)flowName{
@@ -70,6 +73,12 @@
 }
 
 - (void)clickAddBtnAction:(UIButton *)actionBtn{
+//    YCHttpRequest *req = [[YCHttpRequest alloc] init];
+//    req.requestMethod = (self.clickTimes % 2 == 0) ? (kYCHttpRequestMethod4Post) : (kYCHttpRequestMethod4Get);
+//    self.clickTimes ++;
+//    [req startRequestHttps:nil failedBlock:nil];
+//    return;
+    
     YCAddFamilyCtrlViewController *ctrl = [[YCAddFamilyCtrlViewController alloc] initWithFlowName:@""];
     @weakify(self);
     ctrl.okBlock = ^(id param) {

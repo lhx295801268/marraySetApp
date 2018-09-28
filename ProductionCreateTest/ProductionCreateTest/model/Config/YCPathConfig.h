@@ -7,6 +7,8 @@
 //
 
 #ifndef YCPathConfig_h
+//url地址集合
+#define YCDefRootUrl @"https://www.baidu.com"
 //document 文件夹下的文件
 #define YCDefFamilyObjFilePath @"familyObjListFile"
 
