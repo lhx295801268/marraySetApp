@@ -18,14 +18,20 @@
     static dispatch_once_t onceToken;
     static YCConclusionObj *shareIns;
     dispatch_once(&onceToken, ^{
-        shareIns = [[YCConclusionObj alloc] init];
+        shareIns = [[YCConclusionObj alloc] init4Instace];
     });
     return shareIns;
 }
-
 - (instancetype)init{
     if (self = [super init]) {
-        NSData *data = [YCFileManager readFileData4FilePath:[[YCFileManager getDocumentFolderPath] stringByAppendingPathComponent:YCDefConclusionFileName]];
+        
+    }
+    return self;
+}
+- (instancetype)init4Instace{
+    if (self = [super init]) {
+        NSString *filePath = [[YCFileManager getDocumentFolderPath] stringByAppendingPathComponent:YCDefConclusionFileName];
+        NSData *data = [YCFileManager readFileData4FilePath:filePath];
         NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         YCConclusionObj *tempObj = [YCConclusionObj yy_modelWithJSON:jsonStr];
         self.inviteCount = tempObj.inviteCount;

@@ -21,6 +21,9 @@
         
         self.showTextView = [UITextView newAutoLayoutView];
         self.showTextView.textColor = [UIColor purpleColor];
+        self.showTextView.scrollEnabled = NO;
+        self.showTextView.returnKeyType = UIReturnKeyDone;
+        self.showTextView.delegate = self;
         [self.contentView addSubview:self.showTextView];
         [self.showTextView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.tipsLabel];
         [self.showTextView autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.tipsLabel withOffset:10];
@@ -91,5 +94,12 @@
     if (nil != self.refreshUIBlock) {
         self.refreshUIBlock(obj);
     }
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    if (nil != self.textViewBecomeFirstBlock) {
+        self.textViewBecomeFirstBlock(self.indexPath, self.showTextView);
+    }
+    return YES;
 }
 @end

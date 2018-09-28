@@ -12,7 +12,8 @@
 @interface YCSecondCtrl ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
-
+@property (nonatomic, strong) NSIndexPath *curEditIndextPath;
+@property (nonatomic, strong) UITextView *curTextView;
 @property (nonatomic, strong) UILabel *priceLabel;
 @end
 
@@ -32,10 +33,17 @@
     [super viewWillAppear:animated];
     [self reloadTitleView];
     [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)reloadTitleView{
     YCConclusionObj *obj = [YCConclusionObj shareIns];
-    CGFloat totalPrice = obj.hotelPrice + obj.weddingPrice + obj.weddingPicCompanyPrice + (obj.deskPrice * obj.deskCount);
+    CGFloat totalPrice = obj.hotelPrice + obj.weddingPrice + obj.weddingPicCompanyPrice;
     self.priceLabel.text = [NSString stringWithFormat:@"%@", @(totalPrice)];
 }
 - (void)initUI{
@@ -92,6 +100,15 @@
     tableView.backgroundColor = [UIColor whiteColor];
     tableView.delegate = self;
     tableView.dataSource = self;
+    
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *rec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchViewMethod)];
+    [self.view addGestureRecognizer:rec];
+}
+- (void)touchViewMethod{
+    if (nil != self.curTextView) {
+        [self.curTextView resignFirstResponder];
+    }
 }
 
 - (void)clickRefreshBtnMethod{
@@ -123,7 +140,12 @@
             [self_weak_ reloadTitleView];
             [self_weak_.tableView reloadData];
         };
+        cell.textViewBecomeFirstBlock = ^(id  _Nullable param, id _Nullable param2) {
+            self_weak_.curEditIndextPath = param;
+            self_weak_.curTextView = param2;
+        };
     }
+    cell.showTextView.keyboardType = UIKeyboardTypeDefault;
     cell.tipsLabel.text = [self.dataList objectAtIndex:indexPath.row];
     YCConclusionObj *obj = [YCConclusionObj shareIns];
     cell.indexPath = indexPath;
@@ -148,11 +170,13 @@
             break;
         case 3:
         {
+            cell.showTextView.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
             cell.showTextView.text = [NSString stringWithFormat:@"%@", @(obj.deskCount)];
         }
             break;
         case 4:
         {
+            cell.showTextView.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
             cell.showTextView.text = cell.showTextView.text = [NSString stringWithFormat:@"%@", @(obj.deskPrice)];
         }
             break;
@@ -170,6 +194,7 @@
             break;
         case 7:
         {
+            cell.showTextView.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
             cell.showTextView.text = [NSString stringWithFormat:@"%@", @(obj.weddingPrice)];
         }
             break;
@@ -180,6 +205,7 @@
             break;
         case 9:
         {
+            cell.showTextView.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
             cell.showTextView.text = [NSString stringWithFormat:@"%@", @(obj.weddingPicCompanyPrice)];
         }
             break;
@@ -187,5 +213,35 @@
             break;
     }
     return cell;
+}
+
+#pragma mark UIKeyboardWillHideNotification UIKeyboardWillShowNotification
+- (void)keyboardWillShow:(NSNotification *)notification{
+    if (self.curEditIndextPath == nil) {
+        return;
+    }
+    NSDictionary *dic = notification.userInfo;
+    CGFloat duration = [[dic objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    NSValue *tempValue = [dic objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect boardBounds = [tempValue CGRectValue];
+    NSInteger row = self.curEditIndextPath.row;
+    CGFloat place = (row + 1) * 60 + 80;
+    if (boardBounds.origin.y < place) {
+        CGFloat devalue = place - boardBounds.origin.y;
+        CGPoint curPoint = self.tableView.contentOffset;
+        @weakify(self);
+        [UIView animateWithDuration:duration animations:^{
+            self_weak_.tableView.contentOffset = CGPointMake(0, (curPoint.y + devalue));
+        } completion:nil];
+    }
+}
+
+- (void)keyboardWillHidden:(NSNotification *)notifaction{
+    self.curEditIndextPath = nil;
+    NSDictionary *dic = notifaction.userInfo;
+    CGFloat duration = [[dic objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    [UIView animateWithDuration:duration animations:^{
+        self.tableView.bounds =CGRectMake(0, (80 ), self.tableView.frame.size.width, self.tableView.frame.size.height);
+    } completion:nil];
 }
 @end

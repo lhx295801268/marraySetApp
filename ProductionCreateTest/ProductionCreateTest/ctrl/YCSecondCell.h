@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UITextView *showTextView;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, copy) ONE_PARAM_BLOCK refreshUIBlock;
+@property (nonatomic, copy) TWO_PARAM_BLOCK textViewBecomeFirstBlock;
 @end
 
 NS_ASSUME_NONNULL_END
