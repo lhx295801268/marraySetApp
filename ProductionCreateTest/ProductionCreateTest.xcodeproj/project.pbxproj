@@ -23,6 +23,9 @@
 		6993C914215A39E900DDF2B1 /* YCTableBarCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6993C90F215A39E900DDF2B1 /* YCTableBarCtrl.m */; };
 		6993C917215A3AAE00DDF2B1 /* YCMainCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6993C916215A3AAE00DDF2B1 /* YCMainCtrl.m */; };
 		6993C91A215A3B0800DDF2B1 /* YCSecondCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6993C919215A3B0800DDF2B1 /* YCSecondCtrl.m */; };
+		699EDE6B215DD50A00552F5E /* YCUploadFileItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 699EDE6A215DD50A00552F5E /* YCUploadFileItem.m */; };
+		699EDE6E215DDB8300552F5E /* YCHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 699EDE6D215DDB8300552F5E /* YCHttpRequest.m */; };
+		699EDE71215DF75300552F5E /* YCHttpResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 699EDE70215DF75300552F5E /* YCHttpResponse.m */; };
 		69DDF644215C7E0C0000D378 /* YCListObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DDF643215C7E0C0000D378 /* YCListObj.m */; };
 		69DDF647215C89A30000D378 /* YCSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DDF646215C89A30000D378 /* YCSecondCell.m */; };
 		69DDF64A215C8BE00000D378 /* YCMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DDF649215C8BE00000D378 /* YCMainCell.m */; };
@@ -81,6 +84,13 @@
 		6993C916215A3AAE00DDF2B1 /* YCMainCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCMainCtrl.m; sourceTree = "<group>"; };
 		6993C918215A3B0800DDF2B1 /* YCSecondCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCSecondCtrl.h; sourceTree = "<group>"; };
 		6993C919215A3B0800DDF2B1 /* YCSecondCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCSecondCtrl.m; sourceTree = "<group>"; };
+		699EDE69215DD50A00552F5E /* YCUploadFileItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCUploadFileItem.h; sourceTree = "<group>"; };
+		699EDE6A215DD50A00552F5E /* YCUploadFileItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCUploadFileItem.m; sourceTree = "<group>"; };
+		699EDE6C215DDB8300552F5E /* YCHttpRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCHttpRequest.h; sourceTree = "<group>"; };
+		699EDE6D215DDB8300552F5E /* YCHttpRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCHttpRequest.m; sourceTree = "<group>"; };
+		699EDE6F215DF75300552F5E /* YCHttpResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCHttpResponse.h; sourceTree = "<group>"; };
+		699EDE70215DF75300552F5E /* YCHttpResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCHttpResponse.m; sourceTree = "<group>"; };
+		699EDE72215DF7E200552F5E /* YCTypeDefObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCTypeDefObj.h; sourceTree = "<group>"; };
 		69DDF642215C7E0C0000D378 /* YCListObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCListObj.h; sourceTree = "<group>"; };
 		69DDF643215C7E0C0000D378 /* YCListObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCListObj.m; sourceTree = "<group>"; };
 		69DDF645215C89A30000D378 /* YCSecondCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCSecondCell.h; sourceTree = "<group>"; };
@@ -185,6 +195,7 @@
 		69807237215B55FF00B5C290 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				699EDE68215DD4BC00552F5E /* FileUploadAndDownload */,
 				69807244215B639600B5C290 /* Config */,
 				69807241215B5E1E00B5C290 /* Obj */,
 				69807240215B5E0100B5C290 /* NetworkProtocol */,
@@ -213,6 +224,10 @@
 		69807240215B5E0100B5C290 /* NetworkProtocol */ = {
 			isa = PBXGroup;
 			children = (
+				699EDE6C215DDB8300552F5E /* YCHttpRequest.h */,
+				699EDE6D215DDB8300552F5E /* YCHttpRequest.m */,
+				699EDE6F215DF75300552F5E /* YCHttpResponse.h */,
+				699EDE70215DF75300552F5E /* YCHttpResponse.m */,
 			);
 			path = NetworkProtocol;
 			sourceTree = "<group>";
@@ -226,6 +241,7 @@
 				69DDF643215C7E0C0000D378 /* YCListObj.m */,
 				69DDF64B215CAFE60000D378 /* YCConclusionObj.h */,
 				69DDF64C215CAFE60000D378 /* YCConclusionObj.m */,
+				699EDE72215DF7E200552F5E /* YCTypeDefObj.h */,
 			);
 			path = Obj;
 			sourceTree = "<group>";
@@ -276,6 +292,15 @@
 				6993C90F215A39E900DDF2B1 /* YCTableBarCtrl.m */,
 			);
 			path = basic;
+			sourceTree = "<group>";
+		};
+		699EDE68215DD4BC00552F5E /* FileUploadAndDownload */ = {
+			isa = PBXGroup;
+			children = (
+				699EDE69215DD50A00552F5E /* YCUploadFileItem.h */,
+				699EDE6A215DD50A00552F5E /* YCUploadFileItem.m */,
+			);
+			path = FileUploadAndDownload;
 			sourceTree = "<group>";
 		};
 		AB273F1ED28188730D1C136D /* Pods */ = {
@@ -486,12 +511,15 @@
 				69DDF64A215C8BE00000D378 /* YCMainCell.m in Sources */,
 				6993C912215A39E900DDF2B1 /* YCSysCtrl.m in Sources */,
 				69DDF644215C7E0C0000D378 /* YCListObj.m in Sources */,
+				699EDE6B215DD50A00552F5E /* YCUploadFileItem.m in Sources */,
 				6980723D215B587F00B5C290 /* YCFileManager.m in Sources */,
 				6993C917215A3AAE00DDF2B1 /* YCMainCtrl.m in Sources */,
+				699EDE71215DF75300552F5E /* YCHttpResponse.m in Sources */,
 				6980723A215B566F00B5C290 /* YCFamilyObj.m in Sources */,
 				6977F54C21548EEE00F10952 /* main.m in Sources */,
 				6993C913215A39E900DDF2B1 /* NavicationMainCtrl.m in Sources */,
 				6980724D215B69DD00B5C290 /* YCAddFamilyCtrlViewController.m in Sources */,
+				699EDE6E215DDB8300552F5E /* YCHttpRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,11 +669,28 @@
 			baseConfigurationReference = 53EF508D6DA64E3024C0E363 /* Pods-ProductionCreateTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = P9N3WJ98EG;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/DZNEmptyDataSet\"",
+					"\"${PODS_ROOT}/Headers/Public/FMDB\"",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/PureLayout\"",
+					"\"${PODS_ROOT}/Headers/Public/Reachability\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactiveObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
+					"\"${PODS_ROOT}/Headers/Public/YYText\"",
+					"${PROJECT_DIR}",
+				);
 				INFOPLIST_FILE = ProductionCreateTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YC.TsunamiLi.com.ProductionCreateTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/model/Obj";
 			};
 			name = Debug;
 		};
@@ -654,11 +699,28 @@
 			baseConfigurationReference = BDB00B67272D3E019EF6BC70 /* Pods-ProductionCreateTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = P9N3WJ98EG;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/DZNEmptyDataSet\"",
+					"\"${PODS_ROOT}/Headers/Public/FMDB\"",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/PureLayout\"",
+					"\"${PODS_ROOT}/Headers/Public/Reachability\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactiveObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
+					"\"${PODS_ROOT}/Headers/Public/YYText\"",
+					"${PROJECT_DIR}",
+				);
 				INFOPLIST_FILE = ProductionCreateTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YC.TsunamiLi.com.ProductionCreateTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/model/Obj";
 			};
 			name = Release;
 		};
