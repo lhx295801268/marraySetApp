@@ -10,7 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface YCAddFamilyCtrlViewController : YCSysCtrl
-@property(nonatomic, copy) ONE_PARAM_BLOCK okBlock;
 @end
 
 NS_ASSUME_NONNULL_END

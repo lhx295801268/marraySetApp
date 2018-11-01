@@ -15,7 +15,6 @@
 		6977F55D21548EEE00F10952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6977F55B21548EEE00F10952 /* LaunchScreen.storyboard */; };
 		6977F56821548EEE00F10952 /* ProductionCreateTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6977F56721548EEE00F10952 /* ProductionCreateTestTests.m */; };
 		6977F57321548EEE00F10952 /* ProductionCreateTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6977F57221548EEE00F10952 /* ProductionCreateTestUITests.m */; };
-		6980723A215B566F00B5C290 /* YCFamilyObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 69807239215B566F00B5C290 /* YCFamilyObj.m */; };
 		6980723D215B587F00B5C290 /* YCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6980723C215B587F00B5C290 /* YCFileManager.m */; };
 		6980724D215B69DD00B5C290 /* YCAddFamilyCtrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6980724C215B69DD00B5C290 /* YCAddFamilyCtrlViewController.m */; };
 		6993C912215A39E900DDF2B1 /* YCSysCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6993C90D215A39E900DDF2B1 /* YCSysCtrl.m */; };
@@ -26,10 +25,12 @@
 		699EDE6B215DD50A00552F5E /* YCUploadFileItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 699EDE6A215DD50A00552F5E /* YCUploadFileItem.m */; };
 		699EDE6E215DDB8300552F5E /* YCHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 699EDE6D215DDB8300552F5E /* YCHttpRequest.m */; };
 		699EDE71215DF75300552F5E /* YCHttpResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 699EDE70215DF75300552F5E /* YCHttpResponse.m */; };
-		69DDF644215C7E0C0000D378 /* YCListObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DDF643215C7E0C0000D378 /* YCListObj.m */; };
 		69DDF647215C89A30000D378 /* YCSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DDF646215C89A30000D378 /* YCSecondCell.m */; };
 		69DDF64A215C8BE00000D378 /* YCMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DDF649215C8BE00000D378 /* YCMainCell.m */; };
 		69DDF64D215CAFE60000D378 /* YCConclusionObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DDF64C215CAFE60000D378 /* YCConclusionObj.m */; };
+		CD1255F221896AF300331515 /* DBBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1255F121896AF300331515 /* DBBase.m */; };
+		CD1255F82189843C00331515 /* ItemFamilyTb.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1255F72189843C00331515 /* ItemFamilyTb.m */; };
+		CD1255FE21898A7300331515 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1255FD21898A7300331515 /* DataModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +67,6 @@
 		6977F56E21548EEE00F10952 /* ProductionCreateTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProductionCreateTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6977F57221548EEE00F10952 /* ProductionCreateTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionCreateTestUITests.m; sourceTree = "<group>"; };
 		6977F57421548EEE00F10952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		69807238215B566E00B5C290 /* YCFamilyObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCFamilyObj.h; sourceTree = "<group>"; };
-		69807239215B566F00B5C290 /* YCFamilyObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCFamilyObj.m; sourceTree = "<group>"; };
 		6980723B215B587F00B5C290 /* YCFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCFileManager.h; sourceTree = "<group>"; };
 		6980723C215B587F00B5C290 /* YCFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCFileManager.m; sourceTree = "<group>"; };
 		69807248215B63F900B5C290 /* YCNoticationNameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCNoticationNameConfig.h; sourceTree = "<group>"; };
@@ -91,8 +90,6 @@
 		699EDE6F215DF75300552F5E /* YCHttpResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCHttpResponse.h; sourceTree = "<group>"; };
 		699EDE70215DF75300552F5E /* YCHttpResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCHttpResponse.m; sourceTree = "<group>"; };
 		699EDE72215DF7E200552F5E /* YCTypeDefObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCTypeDefObj.h; sourceTree = "<group>"; };
-		69DDF642215C7E0C0000D378 /* YCListObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCListObj.h; sourceTree = "<group>"; };
-		69DDF643215C7E0C0000D378 /* YCListObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCListObj.m; sourceTree = "<group>"; };
 		69DDF645215C89A30000D378 /* YCSecondCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCSecondCell.h; sourceTree = "<group>"; };
 		69DDF646215C89A30000D378 /* YCSecondCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCSecondCell.m; sourceTree = "<group>"; };
 		69DDF648215C8BE00000D378 /* YCMainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCMainCell.h; sourceTree = "<group>"; };
@@ -100,6 +97,12 @@
 		69DDF64B215CAFE60000D378 /* YCConclusionObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCConclusionObj.h; sourceTree = "<group>"; };
 		69DDF64C215CAFE60000D378 /* YCConclusionObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCConclusionObj.m; sourceTree = "<group>"; };
 		BDB00B67272D3E019EF6BC70 /* Pods-ProductionCreateTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductionCreateTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProductionCreateTest/Pods-ProductionCreateTest.release.xcconfig"; sourceTree = "<group>"; };
+		CD1255F021896AF300331515 /* DBBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBBase.h; sourceTree = "<group>"; };
+		CD1255F121896AF300331515 /* DBBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBBase.m; sourceTree = "<group>"; };
+		CD1255F62189843C00331515 /* ItemFamilyTb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemFamilyTb.h; sourceTree = "<group>"; };
+		CD1255F72189843C00331515 /* ItemFamilyTb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemFamilyTb.m; sourceTree = "<group>"; };
+		CD1255FC21898A7300331515 /* DataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		CD1255FD21898A7300331515 /* DataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,21 +198,14 @@
 		69807237215B55FF00B5C290 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				CD1255EF21896ADF00331515 /* DB */,
 				699EDE68215DD4BC00552F5E /* FileUploadAndDownload */,
 				69807244215B639600B5C290 /* Config */,
 				69807241215B5E1E00B5C290 /* Obj */,
 				69807240215B5E0100B5C290 /* NetworkProtocol */,
 				6980723F215B5DDB00B5C290 /* FileManager */,
-				6980723E215B5DCA00B5C290 /* DataBase */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		6980723E215B5DCA00B5C290 /* DataBase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataBase;
 			sourceTree = "<group>";
 		};
 		6980723F215B5DDB00B5C290 /* FileManager */ = {
@@ -235,10 +231,6 @@
 		69807241215B5E1E00B5C290 /* Obj */ = {
 			isa = PBXGroup;
 			children = (
-				69807238215B566E00B5C290 /* YCFamilyObj.h */,
-				69807239215B566F00B5C290 /* YCFamilyObj.m */,
-				69DDF642215C7E0C0000D378 /* YCListObj.h */,
-				69DDF643215C7E0C0000D378 /* YCListObj.m */,
 				69DDF64B215CAFE60000D378 /* YCConclusionObj.h */,
 				69DDF64C215CAFE60000D378 /* YCConclusionObj.m */,
 				699EDE72215DF7E200552F5E /* YCTypeDefObj.h */,
@@ -277,6 +269,8 @@
 				69DDF646215C89A30000D378 /* YCSecondCell.m */,
 				69DDF648215C8BE00000D378 /* YCMainCell.h */,
 				69DDF649215C8BE00000D378 /* YCMainCell.m */,
+				CD1255FC21898A7300331515 /* DataModel.h */,
+				CD1255FD21898A7300331515 /* DataModel.m */,
 			);
 			path = ctrl;
 			sourceTree = "<group>";
@@ -310,6 +304,17 @@
 				BDB00B67272D3E019EF6BC70 /* Pods-ProductionCreateTest.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD1255EF21896ADF00331515 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				CD1255F021896AF300331515 /* DBBase.h */,
+				CD1255F121896AF300331515 /* DBBase.m */,
+				CD1255F62189843C00331515 /* ItemFamilyTb.h */,
+				CD1255F72189843C00331515 /* ItemFamilyTb.m */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		D705543E3BD72DC5315400E9 /* Frameworks */ = {
@@ -504,19 +509,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				69DDF64D215CAFE60000D378 /* YCConclusionObj.m in Sources */,
+				CD1255FE21898A7300331515 /* DataModel.m in Sources */,
 				6993C91A215A3B0800DDF2B1 /* YCSecondCtrl.m in Sources */,
 				69DDF647215C89A30000D378 /* YCSecondCell.m in Sources */,
 				6977F54F21548EEE00F10952 /* AppDelegate.m in Sources */,
+				CD1255F221896AF300331515 /* DBBase.m in Sources */,
 				6993C914215A39E900DDF2B1 /* YCTableBarCtrl.m in Sources */,
 				69DDF64A215C8BE00000D378 /* YCMainCell.m in Sources */,
 				6993C912215A39E900DDF2B1 /* YCSysCtrl.m in Sources */,
-				69DDF644215C7E0C0000D378 /* YCListObj.m in Sources */,
 				699EDE6B215DD50A00552F5E /* YCUploadFileItem.m in Sources */,
 				6980723D215B587F00B5C290 /* YCFileManager.m in Sources */,
 				6993C917215A3AAE00DDF2B1 /* YCMainCtrl.m in Sources */,
 				699EDE71215DF75300552F5E /* YCHttpResponse.m in Sources */,
-				6980723A215B566F00B5C290 /* YCFamilyObj.m in Sources */,
 				6977F54C21548EEE00F10952 /* main.m in Sources */,
+				CD1255F82189843C00331515 /* ItemFamilyTb.m in Sources */,
 				6993C913215A39E900DDF2B1 /* NavicationMainCtrl.m in Sources */,
 				6980724D215B69DD00B5C290 /* YCAddFamilyCtrlViewController.m in Sources */,
 				699EDE6E215DDB8300552F5E /* YCHttpRequest.m in Sources */,
@@ -687,6 +693,7 @@
 					"${PROJECT_DIR}",
 				);
 				INFOPLIST_FILE = ProductionCreateTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YC.TsunamiLi.com.ProductionCreateTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -717,6 +724,7 @@
 					"${PROJECT_DIR}",
 				);
 				INFOPLIST_FILE = ProductionCreateTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YC.TsunamiLi.com.ProductionCreateTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";

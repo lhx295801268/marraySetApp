@@ -7,7 +7,8 @@
 //
 
 #import "YCAddFamilyCtrlViewController.h"
-#import "YCFamilyObj.h"
+#import "ItemFamilyTb.h"
+#import "DataModel.h"
 @interface YCAddFamilyCtrlViewController ()
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UITextField *countTextField;
@@ -90,12 +91,10 @@
     }
     NSInteger count = [countStr integerValue];
     count = (count <= 0) ? (1) : (count);
-    YCFamilyObj *tempObj = [[YCFamilyObj alloc] init];
-    tempObj.membersCount = count;
+    ItemFamilyTb *tempObj = [[ItemFamilyTb alloc] init];
+    tempObj.memberCount = count;
     tempObj.familyName = nameStr;
-    if(nil != self.okBlock){
-        self.okBlock(tempObj);
-    }
+    [[DataModel shareIns] addItemFamily:tempObj];
     [self onBack];
 }
 

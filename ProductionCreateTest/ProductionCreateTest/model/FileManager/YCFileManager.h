@@ -20,6 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getDocumentFolderPath;
 
 /**
+ 获取数据库表文件夹路径
+
+ @return 全路径
+ */
++(NSString *)getDBFolderPath;
+/**
  获取缓存cache目录文件夹位置
  @returnn 路径
  */
@@ -39,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param desPath 目标文件夹路径
  */
--(void)checkFolderAndCreat:(NSString *)desPath;
++(void)checkFolderAndCreat:(NSString *)desPath;
 
 /**
  读取文件

@@ -9,24 +9,26 @@
 #import "YCMainCtrl.h"
 #import "YCFileManager.h"
 #import "YCPathConfig.h"
-#import "YCFamilyObj.h"
-#import "YCListObj.h"
 #import "YCMainCell.h"
 #import "YCConclusionObj.h"
 #import "YCHttpRequest.h"
 #import "addFamilyCtrl/YCAddFamilyCtrlViewController.h"
-@interface YCMainCtrl()<UITableViewDelegate, UITableViewDataSource>
+
+#import "DataModel.h"
+#import "ItemFamilyTb.h"
+@interface YCMainCtrl()<UITableViewDelegate, UITableViewDataSource, DataModelFamilyChangeDelegate>
 @property (nonatomic, strong) UIView *titleContentView;
 @property (nonatomic, strong) UIButton *addBtn;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
-
 @property (nonatomic, assign) NSInteger clickTimes;
+@property (nonatomic, strong) DataModel *dataModel;
 @end
 @implementation YCMainCtrl
 - (instancetype)initWithFlowName:(NSString *)flowName{
     if(self = [super initWithFlowName:flowName]){
         self.navationbarHidden = YES;
+        
     }
     return self;
 }
@@ -34,8 +36,15 @@
     [super viewDidLoad];
 //    self.view.backgroundColor = [UIColor greenColor];
     self.dataList = [[NSMutableArray alloc] init];
+    self.dataModel = [DataModel shareIns];
+    self.dataModel.delegate = self;
     [self initUI];
     [self initData];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.dataModel refreshData];
 }
 
 - (void)initUI{
@@ -65,6 +74,7 @@
     self.tableView = [UITableView newAutoLayoutView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     [self.tableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleContentView];
     [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeLeft];
@@ -73,63 +83,15 @@
 }
 
 - (void)clickAddBtnAction:(UIButton *)actionBtn{
-//    YCHttpRequest *req = [[YCHttpRequest alloc] init];
-//    req.requestMethod = (self.clickTimes % 2 == 0) ? (kYCHttpRequestMethod4Post) : (kYCHttpRequestMethod4Get);
-//    self.clickTimes ++;
-//    [req startRequestHttps:nil failedBlock:nil];
-//    return;
-    
     YCAddFamilyCtrlViewController *ctrl = [[YCAddFamilyCtrlViewController alloc] initWithFlowName:@""];
-    @weakify(self);
-    ctrl.okBlock = ^(id param) {
-        if (nil == param) {
-            return;
-        }
-        if (nil == self.dataList) {
-            self.dataList = [[NSMutableArray alloc] init];
-        }
-        [self_weak_.dataList addObject:param];
-        [self_weak_.tableView reloadData];
-        [YCConclusionObj shareIns].inviteCount ++;
-        [YCConclusionObj shareIns].totalCount += ((YCFamilyObj *)param).membersCount;
-        YCListObj *tempObj = [[YCListObj alloc] init];
-        tempObj.familyObjList = self.dataList;
-        NSString *saveStr = [tempObj yy_modelToJSONString];//[willSaveJsonList yy_modelToJSONString];
-        NSString *path = [[YCFileManager getDocumentFolderPath] stringByAppendingPathComponent:YCDefFamilyObjFilePath];
-        [YCFileManager writeDataToFile:saveStr path:path];
-    };
     [self gotoNextCtrl:ctrl];
 }
 
 - (void)initData{
-    NSString *path = [[YCFileManager getDocumentFolderPath] stringByAppendingPathComponent:YCDefFamilyObjFilePath];
-    NSData *data = [YCFileManager readFileData4FilePath:path];
-    if (nil == data) {
-        return;
-    }
-    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    YCListObj *tempObj = [YCListObj yy_modelWithJSON:jsonStr];
-    tempObj.familyObjList = [NSArray yy_modelArrayWithClass:YCFamilyObj.class json:tempObj.familyObjList];
-    if (nil != tempObj.familyObjList) {
-        self.dataList = [tempObj.familyObjList mutableCopy];
-        [self.tableView reloadData];
-    }
-    [YCConclusionObj shareIns].inviteCount = self.dataList.count;
-    [YCConclusionObj shareIns].totalCount = [self statisticTotalCount];
+    self.dataList = [[self.dataModel getFamilyDataList] mutableCopy];
+    [self.tableView reloadData];
 }
 
-/**
- 统计总人数
-
- @return 返回总人数
- */
-- (NSInteger)statisticTotalCount{
-    NSInteger totalCount = 0;
-    for (YCFamilyObj *obj in self.dataList) {
-        totalCount += obj.membersCount;
-    }
-    return totalCount;
-}
 #pragma mark UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataList.count;
@@ -145,9 +107,51 @@
         cell = [[YCMainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    YCFamilyObj *obj = [self.dataList objectAtIndex:indexPath.row];
+    cell.nameLabel.text = @"";
+    cell.countLabel.text = @"";
+    ItemFamilyTb *obj = [self.dataList objectAtIndex:indexPath.row];
     cell.nameLabel.text = obj.familyName;
-    cell.countLabel.text = [NSString stringWithFormat:@"%@", @(obj.membersCount)];
+    cell.countLabel.text = [NSString stringWithFormat:@"%@", @(obj.memberCount)];
     return cell;
+}
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    ItemFamilyTb *obj = [self.dataList objectAtIndex:indexPath.row];
+    [self.dataModel deleteItemFamily:obj];
+}
+
+#pragma mark DataModelFamilyChangeDelegate
+-(void)addItemFamily:(ItemFamilyTb *)addedFamily{
+    self.dataList = [[self.dataModel getFamilyDataList] mutableCopy];
+    [self mainThreadReloadView];
+}
+
+- (void)deleteItemFamily:(ItemFamilyTb *)dFamily{
+    self.dataList = [[self.dataModel getFamilyDataList] mutableCopy];
+    [self mainThreadReloadView];
+}
+
+- (void)familyListdidChange:(NSArray *)dataList{
+    self.dataList = [dataList mutableCopy];
+    [self mainThreadReloadView];
+}
+
+- (void)updateItemFamily:(ItemFamilyTb *)updatedFamily {
+    
+}
+
+- (void)mainThreadReloadView{
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self_weak_.tableView reloadData];
+    });
 }
 @end

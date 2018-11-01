@@ -18,6 +18,13 @@
     return  [pathList firstObject];
 }
 
++(NSString *)getDBFolderPath{
+    NSString *resultFolderPath = [self getDocumentFolderPath];
+    resultFolderPath = [resultFolderPath stringByAppendingPathComponent:@"DBFolder"];
+    [self checkFolderAndCreat:resultFolderPath];
+    return resultFolderPath;
+}
+
 /**
  获取缓存cache目录文件夹位置
  @returnn 路径
@@ -46,7 +53,7 @@
 
  @param desPath 目标文件夹路径
  */
--(void)checkFolderAndCreat:(NSString *)desPath{
++(void)checkFolderAndCreat:(NSString *)desPath{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDire = true;
     if (![fileManager fileExistsAtPath:desPath isDirectory:&isDire]) {

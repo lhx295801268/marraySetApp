@@ -9,6 +9,8 @@
 #import "YCSecondCtrl.h"
 #import "YCSecondCell.h"
 #import "YCConclusionObj.h"
+#import "ItemFamilyTb.h"
+#import "DataModel.h"
 @interface YCSecondCtrl ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
@@ -35,6 +37,7 @@
     [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickRefreshBtnMethod) name:DefConclusionChangeNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
