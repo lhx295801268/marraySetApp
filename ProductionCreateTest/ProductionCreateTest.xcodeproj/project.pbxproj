@@ -31,6 +31,7 @@
 		CD1255F221896AF300331515 /* DBBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1255F121896AF300331515 /* DBBase.m */; };
 		CD1255F82189843C00331515 /* ItemFamilyTb.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1255F72189843C00331515 /* ItemFamilyTb.m */; };
 		CD1255FE21898A7300331515 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1255FD21898A7300331515 /* DataModel.m */; };
+		CD5EBAA1219A8E9100EA9881 /* TempXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD5EBAA0219A8E9100EA9881 /* TempXib.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		CD1255F72189843C00331515 /* ItemFamilyTb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemFamilyTb.m; sourceTree = "<group>"; };
 		CD1255FC21898A7300331515 /* DataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		CD1255FD21898A7300331515 /* DataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		CD5EBAA0219A8E9100EA9881 /* TempXib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempXib.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +254,7 @@
 			children = (
 				6980724B215B69DD00B5C290 /* YCAddFamilyCtrlViewController.h */,
 				6980724C215B69DD00B5C290 /* YCAddFamilyCtrlViewController.m */,
+				CD5EBAA0219A8E9100EA9881 /* TempXib.xib */,
 			);
 			path = addFamilyCtrl;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6977F55D21548EEE00F10952 /* LaunchScreen.storyboard in Resources */,
+				CD5EBAA1219A8E9100EA9881 /* TempXib.xib in Resources */,
 				6977F55A21548EEE00F10952 /* Assets.xcassets in Resources */,
 				6977F55821548EEE00F10952 /* Main.storyboard in Resources */,
 			);
